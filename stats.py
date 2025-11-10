@@ -1,5 +1,8 @@
 letter = {}
 
+def sort_on(letters):
+    return[letters.key]
+
 def num_words(filepath):
     with open(filepath) as f:
         contents = f.read()
@@ -21,15 +24,16 @@ def num_characters(filepath, dict):
             if contents[i].lower() not in dict and contents[i].isalpha():
                 t = contents[i].lower()
                 dict[f"{t}"] = 1
-        print(dict)
+        #print(dict)
 
 def sorted_characters(dict):
-    dict2 = list(dict.items())
-    sorted_list = dict2.sort(reverse=True, key=dict)
-    print(sorted_list)
+    list1 = list(dict.items())
+    list2 = sorted(list1, reverse=True, key=sort_on)
+    print(list2)
+
 
 def main():
-    num_characters("books/frankenstein.txt", letters)
-    #sorted_characters(letters)
+    num_characters("books/frankenstein.txt", letter)
+    sorted_characters(letter)
 
 main()
