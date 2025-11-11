@@ -1,7 +1,11 @@
 letter = {}
 
-def sort_on(letters):
-    return[letters.key]
+def sort_on(dict):
+    try:
+        return dict["num"]
+    except Exception as e:
+        print('')
+
 
 def num_words(filepath):
     with open(filepath) as f:
@@ -27,13 +31,12 @@ def num_characters(filepath, dict):
         #print(dict)
 
 def sorted_characters(dict):
-    list1 = list(dict.items())
-    list2 = sorted(list1, reverse=True, key=sort_on)
-    print(list2)
+    list = []
+    for char, num in dict.items():
+        list.append({"char": char, "num": num})
+    list.sort(reverse=True, key=sort_on)
+    print("--------- Character Count -------")
+    for i in range(0, len(list)):
+        print(f"{list[i]['char']}: {list[i]['num']}")
+    print("============= END ===============")
 
-
-def main():
-    num_characters("books/frankenstein.txt", letter)
-    sorted_characters(letter)
-
-main()
